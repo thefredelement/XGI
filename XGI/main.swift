@@ -9,13 +9,7 @@
 import Foundation
 
 
-func main(_ arguments: [String]) -> Int32 {
-    
-    let env = ProcessInfo.processInfo.environment
-    env.forEach {
-        print("env var is: \($0.key) : \($0.value)")
-    }
-    
+private func main(_ arguments: [String]) -> Int32 {
     
     return EXIT_SUCCESS; //
 }

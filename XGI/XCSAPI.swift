@@ -8,6 +8,12 @@
 
 import Foundation
 
+
+private enum EndpointURLError: Error {
+    
+    case couldNotMakeURL
+}
+
 private enum HTTPMethod: String {
     
     case DELETE
@@ -18,12 +24,20 @@ private enum HTTPMethod: String {
 
 private enum Endpoint {
     
+    private var base: URL? {
+        return URL(string: "https://localhost:20343/api")
+    }
+    
     case bots
     case integration
     
-    var url: URL? {
-        // TODO: - Return url for each Xcode Server Endpoint
-        return nil
+    func makeIntegrationPostURL(for bot: String) throws -> URL {
+        // api/bots/6f0faeb1cc4c55e174cac5ff8100f13b/integrations
+        let rawURL = "/bots/\(bot)/integrations"
+        guard let url = base?.appendingPathComponent(rawURL) else {
+            throw EndpointURLError.couldNotMakeURL
+        }
+        return url
     }
 }
 

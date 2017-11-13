@@ -86,7 +86,7 @@ enum XCSVariable {
     case XCS
     
     private func value(for key: String) throws -> String {
-        guard let value = ProcessInfo.processInfo.environment["key"] else {
+        guard let value = ProcessInfo.processInfo.environment[key] else {
             throw XCSVariableError.valueForVariableNotFound
         }
         return value
