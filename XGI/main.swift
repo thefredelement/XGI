@@ -8,5 +8,16 @@
 
 import Foundation
 
-print("Hello, World!")
 
+func main(_ arguments: [String]) -> Int32 {
+    
+    let env = ProcessInfo.processInfo.environment
+    env.forEach {
+        print("env var is: \($0.key) : \($0.value)")
+    }
+    
+    
+    return EXIT_SUCCESS; //
+}
+
+_ = main(CommandLine.arguments)
